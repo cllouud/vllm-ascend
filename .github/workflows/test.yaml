@@ -11,7 +11,7 @@ jobs:
       - name: Show NPU info
         run: |
           npu-smi info
-      - run: sleep 3600
+
   job_1:
     runs-on: vllm
     container:
