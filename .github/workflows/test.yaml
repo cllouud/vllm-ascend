@@ -11,7 +11,8 @@ jobs:
       - name: Show NPU info
         run: |
           npu-smi info
-      - run: sleep 3600
+      - run: cd /shared-data
+      - run: git clone https://github.com/actions/runner-container-hooks
   job_4:
     runs-on: linux-arm64-npu-2
     container:
@@ -21,7 +22,7 @@ jobs:
       - name: Show NPU info
         run: |
           npu-smi info
-      - run: sleep 3600
+    
   job_5:
     runs-on: linux-arm64-npu-4
     container:
@@ -31,4 +32,17 @@ jobs:
       - name: Show NPU info
         run: |
           npu-smi info
-      - run: sleep 3600
+      - run: sleep 60
+      - run: ls /shared-data/runner-container-hooks/
+
+  job_6:
+    runs-on: linux-arm64-npu-8
+    container:
+      image: ascendai/cann:latest
+      
+    steps:
+      - name: Show NPU info
+        run: |
+          npu-smi info
+      - run: sleep 60
+      - run: ls /shared-data/runner-container-hooks/
