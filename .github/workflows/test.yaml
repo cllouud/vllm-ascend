@@ -12,6 +12,7 @@ jobs:
         run: |
           npu-smi info
       - run: cd /shared-data
+      - run: sleep 3600
       - run: git clone https://github.com/actions/runner-container-hooks
   job_4:
     runs-on: linux-arm64-npu-2
