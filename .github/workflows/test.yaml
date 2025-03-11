@@ -2,36 +2,6 @@ name: Test NPU 1, 2, 4, 8
 on:
   workflow_dispatch:
 jobs:
-  job_0:
-    runs-on: linux-arm64-npu-1
-    container:
-      image: ascendai/cann:latest
-      
-    steps:
-      - name: Show NPU info
-        run: |
-          npu-smi info
-
-  job_1:
-    runs-on: linux-arm64-npu-2
-    container:
-      image: ascendai/cann:latest
-      
-    steps:
-      - name: Show NPU info
-        run: |
-          npu-smi info
-
-  job_2:
-    runs-on: linux-arm64-npu-4
-    container:
-      image: ascendai/cann:latest
-      
-    steps:
-      - name: Show NPU info
-        run: |
-          npu-smi info
-
   job_3:
     runs-on: linux-arm64-npu-8
     container:
