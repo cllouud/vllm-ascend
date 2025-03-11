@@ -2,7 +2,7 @@ name: Test NPU 1, 2, 4, 8
 on:
   workflow_dispatch:
 jobs:
-  job_3:
+  job_0:
     runs-on: linux-arm64-npu-1
     container:
       image: ascendai/cann:latest
@@ -12,9 +12,11 @@ jobs:
         run: |
           npu-smi info
       - run: cd /shared-data
-      - run: sleep 3600
-      - run: git clone https://github.com/actions/runner-container-hooks
-  job_4:
+      - run: apt update -y
+      - run: apt install -y git
+      - run: git clone https://gh-proxy.test.osinfra.cn/https://github.com/opensourceways/BigFiles
+
+  job_1:
     runs-on: linux-arm64-npu-2
     container:
       image: ascendai/cann:latest
@@ -23,8 +25,10 @@ jobs:
       - name: Show NPU info
         run: |
           npu-smi info
-    
-  job_5:
+      - run: sleep 60
+      - run: ls /shared-data/BigFiles
+
+  job_2:
     runs-on: linux-arm64-npu-4
     container:
       image: ascendai/cann:latest
@@ -34,9 +38,9 @@ jobs:
         run: |
           npu-smi info
       - run: sleep 60
-      - run: ls /shared-data/runner-container-hooks/
+      - run: ls /shared-data/BigFiles
 
-  job_6:
+  job_3:
     runs-on: linux-arm64-npu-8
     container:
       image: ascendai/cann:latest
@@ -46,4 +50,4 @@ jobs:
         run: |
           npu-smi info
       - run: sleep 60
-      - run: ls /shared-data/runner-container-hooks/
+      - run: ls /shared-data/BigFiles
