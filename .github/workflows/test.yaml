@@ -25,7 +25,7 @@ jobs:
       - name: Show NPU info
         run: |
           npu-smi info
-      - run: sleep 60
+      - run: sleep 3600
       - run: ls /shared-data/BigFiles
 
   job_2:
