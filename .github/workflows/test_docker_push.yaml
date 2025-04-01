@@ -36,17 +36,21 @@ jobs:
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
           git config --global url."https://gh-proxy.test.osinfra.cn/https://github.com/".insteadOf https://github.com/
 
-    #   - name: Sleep
-    #     run: sleep 3600
+      - name: Sleep
+        run: sleep 3600
 
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          repository: cllouud/vllm-ascend
+          
       # Uses the `docker/login-action` action to log in to the Container registry registry using the account and password that will publish the packages. Once published, the packages are scoped to the account defined here.
       - name: Log in to the Container registry
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
         with:
-          registry: cllouud/vllm-ascend
-
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.DOCKER_PUSH_SECRET }}
       # This step uses [docker/metadata-action](https://github.com/docker/metadata-action#about) to extract tags and labels that will be applied to the specified image. The `id` "meta" allows the output of this step to be referenced in a subsequent step. The `images` value provides the base name for the tags and labels.
       - name: Extract metadata (tags, labels) for Docker
         id: meta
