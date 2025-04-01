@@ -1,6 +1,6 @@
 FROM openeuler/openeuler:22.03
 
-RUN apt-get update -y
+RUN echo "hello" > /test.txt
 
 
 # #
