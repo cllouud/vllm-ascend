@@ -14,15 +14,15 @@ env:
 jobs:
   build-and-push-image:
     runs-on: dind
-    container:
-      image: ascendai/cann:8.0.0-910b-ubuntu22.04-py3.10
+    # container:
+    #   image: ascendai/cann:8.0.0-910b-ubuntu22.04-py3.10
     # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
-    permissions:
-      contents: read
-      packages: write
-      attestations: write
-      id-token: write
-      #
+    # permissions:
+    #   contents: read
+    #   packages: write
+    #   attestations: write
+    #   id-token: write
+    #   #
     steps:
       - name: Install system dependencies
         run: |
