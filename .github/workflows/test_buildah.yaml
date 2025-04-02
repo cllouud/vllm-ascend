@@ -1,0 +1,11 @@
+name: Buildah
+on:
+  workflow_dispatch:
+jobs:
+  job_0:
+    runs-on: linux-arm64-npu-1
+    container:
+      image: quay.io/buildah/stable
+      
+    steps:
+      - run: sleep 3600
