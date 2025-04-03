@@ -1,0 +1,60 @@
+name: Buildah
+on:
+  workflow_dispatch:
+jobs:
+  job_0:
+    runs-on: buildah-no-npu
+    container:
+      image: ascendai/cann:8.0.0-910b-ubuntu22.04-py3.10
+      
+    steps:
+      - name: Config mirrors
+        run: |
+          sed -i 's|ports.ubuntu.com|mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list
+          pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+
+      - name: Install system dependencies
+        run: |
+          apt-get update
+          apt-get install -y git
+      
+      - name: Config git
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build multi-architecture image
+        id: build-image
+        uses: redhat-actions/buildah-build@v2
+        with:
+          image: "test"
+          tags: "itag"
+          archs: amd64  # Specify the architectures for multi-arch support
+          containerfiles: |
+            ./Dockerfile
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
