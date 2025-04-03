@@ -26,6 +26,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up QEMU for multi-arch support
+        uses: docker/setup-qemu-action@v3
+
       - name: Build multi-architecture image
         id: build-image
         uses: redhat-actions/buildah-build@v2
