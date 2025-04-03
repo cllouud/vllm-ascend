@@ -16,7 +16,10 @@ jobs:
       - name: Install system dependencies
         run: |
           apt-get update
-          apt-get install -y git buildah
+          apt-get install -y git
+
+      - name: Sleep
+        run: sleep 3600
       
       - name: Config git
         run: |
