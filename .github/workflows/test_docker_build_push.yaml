@@ -64,21 +64,19 @@ jobs:
           subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
-    
-      - name: Ghcr to quay
-        uses: ./.github/workflows/test_ghcr_to_dockerhub.yaml
-#   migrate-mirror:
-#     name: Ghcr to quay
-#     needs:
-#      - build-and-push-image
-#     uses: ./.github/workflows/test_ghcr_to_dockerhub.yaml
-#     secrets:
-#         origin_registry: "ghcr.io"
-#         origin_username: ${{ github.actor }}
-#         origin_password: ${{ secrets.DOCKER_PUSH_SECRET }}
-#         target_registry: "docker.io"
-#         target_username: ${{ secrets.THIRDHUB_USERNAME }}
-#         target_password: ${{ secrets.THIRDHUB_PASSWORD }}
-#         image_name: "vllm-ascend"
-#         image_tag: "main"
+
+  migrate-mirror:
+    name: Ghcr to quay
+    needs:
+     - build-and-push-image
+    uses: ./.github/workflows/test_ghcr_to_dockerhub.yaml
+    secrets:
+        origin_registry: "ghcr.io"
+        origin_username: ${{ github.actor }}
+        origin_password: ${{ secrets.DOCKER_PUSH_SECRET }}
+        target_registry: "docker.io"
+        target_username: ${{ secrets.THIRDHUB_USERNAME }}
+        target_password: ${{ secrets.THIRDHUB_PASSWORD }}
+        image_name: "vllm-ascend"
+        image_tag: "main"
 
