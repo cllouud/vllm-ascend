@@ -17,6 +17,7 @@ jobs:
         run: |
           apt-get update
           apt-get install -y git
+          printf "y\nn\n" | apt-get install buildah
 
       - name: Sleep
         run: sleep 3600
