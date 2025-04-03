@@ -16,7 +16,7 @@ jobs:
       - name: Install system dependencies
         run: |
           apt-get update
-          apt-get install -y git
+          apt-get install -y git buildah
       
       - name: Config git
         run: |
@@ -25,9 +25,6 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Set up QEMU for multi-arch support
-        uses: docker/setup-qemu-action@v3
 
       - name: Build multi-architecture image
         id: build-image
