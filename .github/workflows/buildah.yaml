@@ -18,8 +18,6 @@ jobs:
           sed -i 's|ports.ubuntu.com|mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list
           pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 
-      - name: Sleep
-        run: sleep 3600
 
       - name: Install system dependencies
         run: |
