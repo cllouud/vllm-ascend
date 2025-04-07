@@ -24,21 +24,19 @@ jobs:
       - name: Install system dependencies
         run: |
           apt-get update
-          apt-get install -y git expect
+          apt-get install -y git
      
       - name: Instal buildah
         run: |
-          cat <<EOF >> /buildah-install.sh
-          #!/bin/bash
-          expect <<EOF
-          spawn apt-get install buildah
-          expect "Do you want to continue? [Y/n]" { send "y\r" }
-          expect "registries.conf (Y/I/N/O/D/Z) [default=N] ?" { send "n\r" }
-          expect eof
-          EOF
+          apt-get install -y buildah
 
-          chmod + x buildah-install.sh
-          ./buildah-install.sh
+          cat <<EOF > /etc/containers/registries.conf
+          unqualified-search-registries = ["docker.io"]
+          [[registry]]
+          prefix = "docker.io"
+          location = "hub-proxy.test.osinfra.cn"
+          insecure = false
+          EOF
 
       - name: Sleep
         run: sleep 3600
