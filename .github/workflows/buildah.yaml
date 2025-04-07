@@ -10,7 +10,7 @@ jobs:
   job_0:
     runs-on: buildah-no-npu
     container:
-      image: ascendai/cann:8.0.0-910b-ubuntu22.04-py3.10
+      image: ubuntu:22.04
       
     steps:
       - name: Config mirrors
@@ -46,7 +46,7 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
       - name: Sleep
         run: sleep 3600
 
