@@ -36,8 +36,8 @@ jobs:
           insecure = false
           EOF
 
-      - name: Sleep
-        run: sleep 3600
+    #   - name: Sleep
+    #     run: sleep 3600
       
       - name: Config git
         run: |
