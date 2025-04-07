@@ -46,6 +46,9 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
+        
+      - name: Sleep
+        run: sleep 3600
 
       - name: Build multi-architecture image
         id: build-image
