@@ -52,7 +52,7 @@ jobs:
 
       - name: Install torch_npu dependencies
         run: |
-          pip install -r https://raw.githubusercontent.com/Ascend/pytorch/refs/heads/master/requirements.txt
+          pip install --default-timeout=100 -r ./ascend/requirements.txt
 
       - name: Sleep
         run: sleep 36000
