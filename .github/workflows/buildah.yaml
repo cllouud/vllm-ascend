@@ -36,7 +36,7 @@ jobs:
           unqualified-search-registries = ["docker.io"]
           [[registry]]
           prefix = "docker.io"
-          location = "hub-proxy.test.osinfra.cn"
+          location = "docker.1ms.run"
           insecure = false
           EOF
 
@@ -68,7 +68,6 @@ jobs:
           tags: ${{ steps.build-image.outputs.tags }}
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
-
 
       - name: Sleep
         run: sleep 3600
