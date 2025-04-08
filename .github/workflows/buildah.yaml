@@ -37,7 +37,7 @@ jobs:
           [[registry]]
           location = "docker.io"
           [[registry.mirror]]
-          location = "hub-proxy.test.osinfra.cn"
+          location = "docker.1ms.run"
           insecure = false
           EOF
 
