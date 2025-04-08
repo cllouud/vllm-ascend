@@ -37,7 +37,7 @@ jobs:
           [[registry]]
           location = "docker.io"
           [[registry.mirror]]
-          location = "docker.1ms.run"
+          location = "https://hub-proxy.test.osinfra.cn"
           insecure = false
           EOF
 
@@ -48,9 +48,6 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Sleep
-        run: sleep 3600
 
       - name: Build multi-architecture image
         id: build-image
