@@ -18,10 +18,14 @@
 
 FROM ascendai/cann:8.0.0-910b-ubuntu22.04-py3.10
 
+
+
 ARG PIP_INDEX_URL="https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
 
 # Define environments
 ENV DEBIAN_FRONTEND=noninteractive
+
+RUN sed -i 's|ports.ubuntu.com|mirrors.tuna.tsinghua.edu.cn|g' /etc/apt/sources.list
 
 RUN apt-get update -y && \
     apt-get install -y python3-pip git vim wget net-tools && \
