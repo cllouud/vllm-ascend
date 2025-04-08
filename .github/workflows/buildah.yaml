@@ -45,6 +45,8 @@ jobs:
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
 
+      - name: Sleep
+        run: sleep 3600
 
       - name: Checkout repository
         uses: actions/checkout@v4
