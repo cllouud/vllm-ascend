@@ -44,6 +44,12 @@ jobs:
           repository: pytorch/benchmark
           path: benchmark
 
+      - name: Checkout benchmark
+        uses: actions/checkout@v4
+        with:
+          repository: Ascend/pytorch
+          path: ascend
+
       - name: Install torch_npu dependencies
         run: |
           pip install -r https://raw.githubusercontent.com/Ascend/pytorch/refs/heads/master/requirements.txt
