@@ -32,10 +32,8 @@ jobs:
 
           apt-get install -y buildah
 
-          cat <<EOF > /etc/containers/registries.conf
-          unqualified-search-registries = ["docker.io"]
-          [[registry]]
-          prefix = "docker.io"
+          cat <<EOF > /etc/containers/registries.conf=
+          [[registry.mirror]]
           location = "docker.1ms.run"
           insecure = false
           EOF
