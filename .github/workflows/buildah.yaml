@@ -57,6 +57,7 @@ jobs:
           image: "test"
           tags: "itag"
           archs: amd64  # Specify the architectures for multi-arch support
+          extra-args: --isolation chroot
           containerfiles: |
             ./Dockerfile
 
