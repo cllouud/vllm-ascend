@@ -48,8 +48,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Sleep
-        run: sleep 3600
+
 
       - name: Build multi-architecture image
         id: build-image
@@ -58,7 +57,7 @@ jobs:
           image: ${{ env.IMAGE_NAME }}
           tags: ${{ env.IMAGE_TAGS }}
           archs: amd64
-          extra-args: --isolation chroot
+          extra-args: --isolation chroot --log-level debug
           containerfiles: |
             ./Dockerfile
 
