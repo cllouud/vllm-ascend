@@ -3,18 +3,17 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: ptr-test
-  IMAGE_TAGS: v1 ${{ github.sha }}
+  IMAGE_NAME: vllm-ascend
   IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
   REGISTRY_USER: ${{ github.actor }}
   REGISTRY_PASSWORD: ${{ github.token }}
 
 jobs:
   job_0:
-    runs-on: buildah-no-npu
+    runs-on: linux-arm64-npu-1
     container:
       image: ubuntu:22.04
-      
+
     steps:
       - name: Config mirrors
         run: |
@@ -41,6 +40,17 @@ jobs:
           insecure = false
           EOF
 
+      - name: Docker Metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=pep440,pattern={{raw}}
+
       - name: Config git
         run: |
           git config --global --add safe.directory "$GITHUB_WORKSPACE"
@@ -48,14 +58,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-
-
       - name: Build multi-architecture image
         id: build-image
         uses: redhat-actions/buildah-build@v2
         with:
           image: ${{ env.IMAGE_NAME }}
-          tags: ${{ env.IMAGE_TAGS }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           archs: amd64
           extra-args: --isolation chroot --log-level debug
           containerfiles: |
@@ -70,6 +79,5 @@ jobs:
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
 
-      - name: Sleep
-        run: sleep 3600
+
 
