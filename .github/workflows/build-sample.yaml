@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    runs-on: buildah-no-npu
+    runs-on: linux-arm64-npu-1
     container:
       image: ubuntu:22.04
     outputs:
