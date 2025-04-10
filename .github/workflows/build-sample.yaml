@@ -1,6 +1,9 @@
-name: Buildah
+name: 'Build Image'
 on:
-  workflow_dispatch:
+  workflow_call:
+    outputs:
+      tags:
+        value: ${{ jobs.build.outputs.tags }}
 
 env:
   IMAGE_NAME: vllm-ascend
@@ -9,10 +12,12 @@ env:
   REGISTRY_PASSWORD: ${{ github.token }}
 
 jobs:
-  job_0:
-    runs-on: linux-arm64-npu-1
+  build:
+    runs-on: buildah-no-npu
     container:
       image: ubuntu:22.04
+    outputs:
+      tags: ${{ steps.output.outputs.tags }}
 
     steps:
       - name: Config mirrors
@@ -76,5 +81,10 @@ jobs:
           tags: ${{ env.IMAGE_REGISTRY }}/${{ steps.build-image.outputs.tags }}
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
+
+      - name: Output
+        id: output
+        run: |
+          echo "tags=${{ env.IMAGE_REGISTRY }}/${{ steps.build-image.outputs.tags }}" >> $GITHUB_OUTPUT
 
 

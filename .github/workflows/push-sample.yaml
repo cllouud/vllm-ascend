@@ -1,0 +1,35 @@
+name: 'Push Image'
+
+on:
+  workflow_call:
+    inputs:
+      tags:
+        required: true
+        type: string
+        description: 'tag'
+
+jobs:
+  push-image:
+    name: push image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ github.token }}
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Pull image from GHCR
+        run: docker pull ${{ inputs.tags }}
+
+      - name: Tag image for Docker Hub
+        run: docker tag ${{ inputs.tags }} ${{ secrets.DOCKERHUB_USERNAME }}/vllm-ascend:main
+
+      - name: Push image to Docker Hub
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/vllm-ascend:main

@@ -1,0 +1,20 @@
+name: 'Build And Push Image'
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-image:
+    name: Build Image
+    uses: ./.github/workflows/build-sample.yaml
+
+  push-image:
+    name: Push Image
+    needs:
+      - build-image
+    uses: ./.github/workflows/push-sample.yaml
+    with:
+      tags: ${{ needs.build-image.outputs.tags }}
+
+
+
