@@ -75,8 +75,7 @@ jobs:
           containerfiles: |
             ./Dockerfile
 
-      - name: Sleep
-        run: sleep 3600
+  
 
       - name: Push
         uses: redhat-actions/push-to-registry@v2
