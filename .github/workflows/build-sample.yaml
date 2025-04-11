@@ -68,15 +68,12 @@ jobs:
         uses: redhat-actions/buildah-build@v2
         with:
           image: ${{ env.IMAGE_NAME }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ env.IMAGE_REGISTRY }}/${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           archs: amd64
           extra-args: --isolation chroot --log-level debug
           containerfiles: |
             ./Dockerfile
-    
-      - name: Sleep
-        run: sleep 3600
 
       - name: Push
         uses: redhat-actions/push-to-registry@v2
