@@ -70,7 +70,7 @@ jobs:
           image: ${{ env.IMAGE_NAME }}
           tags: ${{ env.IMAGE_REGISTRY }}/${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          archs: amd64
+          platforms: linux/amd64,linux/arm64
           extra-args: --isolation chroot --log-level debug
           containerfiles: |
             ./Dockerfile
