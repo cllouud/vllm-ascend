@@ -8,15 +8,18 @@ jobs:
     name: job1
     runs-on: linux-arm64-npu-4
     steps:
+      - run: npu-smi info
       - run: sleep 3600
   job2:
     name: job2
     runs-on: linux-arm64-npu-4
     steps:
+      - run: npu-smi info
       - run: sleep 3600
   job3:
     name: job3
     runs-on: linux-arm64-npu-4
     steps:
-    - run: sleep 3600
+      - run: npu-smi info
+      - run: sleep 3600
     
