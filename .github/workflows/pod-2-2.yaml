@@ -1,4 +1,4 @@
-name: 'pod2-1'
+name: 'pod2-2'
 
 on:
   workflow_dispatch:
