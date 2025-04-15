@@ -1,4 +1,4 @@
-name: 'two pod with four NPU'
+name: 'csi obs'
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
 jobs:
   job1:
     name: job1
-    runs-on: linux-arm64-npu-4
+    runs-on: linux-arm64-npu-4-with-csi-obs
     container:
       image: ascendai/cann:latest
     steps:
@@ -15,7 +15,7 @@ jobs:
       - run: sleep 3600
   job2:
     name: job1
-    runs-on: linux-arm64-npu-4
+    runs-on: linux-arm64-npu-4-with-csi-obs
     container:
       image: ascendai/cann:latest
     steps:
