@@ -12,13 +12,6 @@ jobs:
     steps:
       - run: npu-smi info
       - run: sleep 3600
-  job2:
-    name: job2
-    runs-on: linux-arm64-npu-4
-    container:
-      image: ascendai/cann:latest
-    steps:
-      - run: npu-smi info
-      - run: sleep 3600
+
 
 
