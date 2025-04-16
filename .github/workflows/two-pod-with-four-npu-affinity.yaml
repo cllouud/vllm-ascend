@@ -1,0 +1,15 @@
+name: 'affinity'
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    name: job1
+    runs-on: linux-arm64-npu-4-affinity
+    container:
+      image: ascendai/cann:latest
+    steps:
+      - run: npu-smi info
+      - run: sleep 3600
+
