@@ -47,4 +47,6 @@ jobs:
     steps:
       - name: Check npu and CANN info
         run: |
-          sleep 3600
+          npu-smi info
+      - name: say hello
+        run:  echo "hello"
