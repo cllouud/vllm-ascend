@@ -25,7 +25,10 @@ jobs:
     container:
       image: swr.cn-southwest-2.myhuaweicloud.com/modelfoundry/openeuler:24.03-arm
     steps:
-      
+        
       - name: Debug List Artifacts
-        run: sleep 3600
+        run: |
+          yum install git -y
+          git clone https://github.com/cllouud/vllm-ascend
+          sleep 3600
        
