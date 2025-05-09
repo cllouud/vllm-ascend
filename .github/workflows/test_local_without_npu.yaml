@@ -1,0 +1,11 @@
+name: Test local without npu
+on:
+  workflow_dispatch:
+   
+jobs:
+  download:
+    runs-on: local-without-npu
+    steps:
+      - name: Sleep
+        run: sleep 3600
+       
