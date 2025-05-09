@@ -28,7 +28,5 @@ jobs:
         
       - name: Debug List Artifacts
         run: |
-          yum install git -y
-          git clone https://github.com/cllouud/vllm-ascend
           sleep 3600
        
