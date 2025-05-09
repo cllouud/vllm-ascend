@@ -22,7 +22,8 @@ on:
 jobs:
   download:
     runs-on: test-deploy-2
-    
+    container:
+      image: swr.cn-southwest-2.myhuaweicloud.com/modelfoundry/openeuler:24.03-arm
     steps:
       
       - name: Debug List Artifacts
