@@ -4,10 +4,13 @@ on:
 
 jobs:
   download:
+    strategy:
+      max-parallel: 4
+      matrix:
+        vllm_verison: [v1, v2, v3]
     runs-on: hidevlab-npu-1
     container:
       image: swr.cn-southwest-2.myhuaweicloud.com/modelfoundry/openeuler:24.03-arm
-    container
     steps:
       - name: Sleep
         run: sleep 3600
