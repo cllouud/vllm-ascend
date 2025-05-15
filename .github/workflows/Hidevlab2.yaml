@@ -1,0 +1,13 @@
+name: Hidevlab2
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: hidevlab-npu-1
+    container:
+      image: swr.cn-southwest-2.myhuaweicloud.com/modelfoundry/openeuler:24.03-arm
+    container
+    steps:
+      - name: Sleep
+        run: sleep 3600
