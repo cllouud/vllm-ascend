@@ -13,5 +13,5 @@ jobs:
       image: swr.cn-southwest-2.myhuaweicloud.com/modelfoundry/openeuler:24.03-arm
     steps:
       - name: Sleep
-        run: npu-smi info
+        run: sleep 3600
 
