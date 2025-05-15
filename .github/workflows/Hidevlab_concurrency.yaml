@@ -1,4 +1,4 @@
-name: Hidevlab
+name: Hidevlab_concurrency
 on:
   workflow_dispatch:
 
@@ -13,5 +13,5 @@ jobs:
       image: swr.cn-southwest-2.myhuaweicloud.com/modelfoundry/openeuler:24.03-arm
     steps:
       - name: Sleep
-        run: sleep 3600
+        run: npu-smi info
 

@@ -1,4 +1,4 @@
-name: Hidevlab2
+name: Hidevlab_single
 on:
   workflow_dispatch:
 
@@ -10,4 +10,4 @@ jobs:
 
     steps:
       - name: Sleep
-        run: sleep 3600
+        run: npu-smi info
