@@ -3,9 +3,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  download:
-    strategy:
-      max-parallel: 4
+  scheduler:
+    # strategy:
+    #   max-parallel: 4
       matrix:
         os: [linux-arm64-npu-0, linux-arm64-npu-1, linux-arm64-npu-2, linux-arm64-npu-4]
         param: [p1, p2, p3]
@@ -16,5 +16,9 @@ jobs:
     steps:
       - name: Sleep
         run: |
-          npu-smi info
+          if [[ "${{ matrix.os }}" == "linux-arm64-npu-1" ]]; then
+            npu-smi info
+          else
+            echo "hello"
+          fi
           sleep 10
