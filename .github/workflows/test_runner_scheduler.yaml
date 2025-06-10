@@ -1,0 +1,20 @@
+name: test_runner_scheduler
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    strategy:
+      max-parallel: 4
+      matrix:
+        os: [linux-arm64-npu-0, linux-arm64-npu-1, linux-arm64-npu-2, linux-arm64-npu-4]
+        param: [p1, p2, p3]
+    runs-on: ${{ matrix.os }}
+    container:
+      image: m.daocloud.io/quay.io/ascend/cann:8.1.rc1-910b-ubuntu22.04-py3.10
+
+    steps:
+      - name: Sleep
+        run: |
+          npu-smi info
+          sleep 10
