@@ -1,0 +1,14 @@
+name: test_pod_waitiing
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: ${{ linux-arm64-npu-1 }}
+    container:
+      image: m.daocloud.io/quay.io/ascend/cann:8.1.rc1-910b-ubuntu22.04-py3.10
+    steps:
+      - name: Sleep
+        run: |
+          npu-smi info
+          sleep 3600
