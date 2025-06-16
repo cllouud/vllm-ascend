@@ -1,0 +1,14 @@
+name: repository_dispatch
+on:
+  repository_dispatch:
+    types: [pytorch-pr-event-redispatch]
+jobs:
+  job_1:
+    runs-on: linux-arm64-npu-1
+    container:
+      image: ascendai/cann:latest
+
+    steps:
+      - name: Show NPU info
+        run: |
+          npu-smi info
