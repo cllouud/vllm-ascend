@@ -2,6 +2,10 @@ name: arc-runner-set
 on:
   workflow_dispatch:
 
+
+  schedule:
+    - cron: '*/1 * * * *' 
+
 jobs:
   download:
     runs-on: arc-runner-set
