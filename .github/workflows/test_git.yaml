@@ -4,11 +4,6 @@ on:
 
 jobs:
   scheduler:
-    # strategy:
-    #   max-parallel: 4
-      # matrix:
-      #   os: [linux-arm64-npu-0, linux-arm64-npu-1, linux-arm64-npu-2, linux-arm64-npu-4]
-      #   param: [p1, p2, p3]
     runs-on: aicc-linux-arm64-npu-1
     container:
       image: m.daocloud.io/quay.io/ascend/cann:8.1.rc1-910b-ubuntu22.04-py3.10
@@ -21,4 +16,12 @@ jobs:
           # else
           #   echo "hello"
           # fi
+          echo "配置代理："
+          cat ~/.gitconfig
+
+          echo "代理网络通畅:"
+          apt update -y
+          apt install git -y
+          git clone https://gh-proxy.test.osinfra.cn/https://github.com/actions/actions-runner-controller
+          
           sleep 3600
