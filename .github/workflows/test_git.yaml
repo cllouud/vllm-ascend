@@ -11,17 +11,16 @@ jobs:
     steps:
       - name: Sleep
         run: |
-          # if [[ "${{ matrix.os }}" == "linux-arm64-npu-1" ]]; then
-          #   npu-smi info
-          # else
-          #   echo "hello"
-          # fi
-          echo "配置代理："
-          cat ~/.gitconfig
-
-          echo "代理网络通畅:"
           apt update -y
           apt install git -y
+
+          npu-smi info
+          echo "完成配置代理： cat ~/.gitconfig"
+          cat ~/.gitconfig
+
+          echo "代理网络通畅: git clone https://gh-proxy.test.osinfra.cn/https://github.com/actions/actions-runner-controller"
+          
           git clone https://gh-proxy.test.osinfra.cn/https://github.com/actions/actions-runner-controller
+          ls
           
           sleep 3600
