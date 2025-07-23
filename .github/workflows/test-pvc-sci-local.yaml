@@ -1,0 +1,14 @@
+name: test-pvc-sci-local
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    runs-on: test-pvc-sci-local
+    container:
+      image: m.daocloud.io/quay.io/ascend/cann:8.1.rc1-910b-ubuntu22.04-py3.10
+
+    steps:
+      - name: Sleep
+        run: sleep 3600
+        
