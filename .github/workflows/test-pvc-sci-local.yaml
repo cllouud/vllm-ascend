@@ -14,5 +14,5 @@ jobs:
 
     steps:
       - name: Sleep
-        run: sleep 3600
+        run: echo "11"
         
