@@ -16,4 +16,7 @@ jobs:
     steps:
       - name: Sleep
         run: echo "11"
-        
+
+      - name: Checkout vllm-project/vllm repo
+        uses: actions/checkout@v4
+
