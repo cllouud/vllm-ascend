@@ -8,8 +8,8 @@ jobs:
       # max-parallel: 2
       matrix:
         # vllm_verison: [v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12]
-        vllm_version: [v1]
-    runs-on: test-pvc-sci-local
+        vllm_version: [test-csi-local,test-csi-sfs,test-csi-disk-dss,test-csi-sfsturbo,test-csi-nas,test-csi-local-topology]
+    runs-on: ${{ matrix.vllm_version }}
     container:
       image: m.daocloud.io/quay.io/ascend/cann:8.1.rc1-910b-ubuntu22.04-py3.10
 
