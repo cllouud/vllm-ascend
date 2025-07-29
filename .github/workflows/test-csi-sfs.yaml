@@ -1,0 +1,21 @@
+name: test-csi-sfs
+on:
+  workflow_dispatch:
+
+jobs:
+  download:
+    strategy:
+      # max-parallel: 2
+      matrix:
+        # vllm_verison: [v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12]
+        vllm_version: [test-csi-sfs]
+    runs-on: ${{ matrix.vllm_version }}
+    container:
+      image: m.daocloud.io/quay.io/ascend/cann:8.1.rc1-910b-ubuntu22.04-py3.10
+
+    steps:
+      - name: Sleep
+        run: sleep 3600
+
+      - name: Checkout vllm-project/vllm repo
+        uses: actions/checkout@v4
